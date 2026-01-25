@@ -1,0 +1,14 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "peekie": [
+        "../src/index"
+      ],
+      "peekie/*": [
+        "../src/*"
+      ]
+    }
+  }
+}
