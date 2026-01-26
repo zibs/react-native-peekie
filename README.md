@@ -1,5 +1,5 @@
 <h1>
-  <img src="image.png" alt="peekie logo" width="36" height="36" /> peekie
+  <img src="image.png" alt="peekie logo" width="150" height="150" /> peekie
 </h1>
 
 iOS Peek & Pop (via `UIContextMenuInteraction`) for React Native and Expo Modules.
