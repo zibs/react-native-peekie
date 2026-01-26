@@ -137,6 +137,12 @@ npx expo run:ios
 
 ## Publishing
 
-- Update the version in `package.json` (SemVer).
-- Run `npm pack` to verify the published file list.
-- Publish with `npm publish` (use `--access public` for scoped packages).
+```bash
+npm whoami
+npm pack
+npm publish --access public
+```
+
+Notes:
+- If this is the first publish, npm may prompt you to enable 2FA.
+- `--access public` is required for scoped packages; harmless for unscoped.
