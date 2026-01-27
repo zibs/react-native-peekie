@@ -40,8 +40,24 @@ export function NativePeekPreviewContent(props: NativePeekPreviewContentProps) {
     return null;
   }
 
+  const sizeStyle = React.useMemo(() => {
+    const width = props.preferredContentSize?.width ?? 0;
+    const height = props.preferredContentSize?.height ?? 0;
+
+    const resolved: { width?: number; height?: number } = {};
+    if (width > 0) {
+      resolved.width = width;
+    }
+    if (height > 0) {
+      resolved.height = height;
+    }
+
+    return resolved;
+  }, [props.preferredContentSize?.height, props.preferredContentSize?.width]);
+
   const hiddenStyle = StyleSheet.flatten([
     props.style,
+    sizeStyle,
     styles.hiddenPreviewContent,
   ]);
 
@@ -53,9 +69,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    right: 0,
-    bottom: 0,
     opacity: 0,
-    pointerEvents: 'none',
   },
 });

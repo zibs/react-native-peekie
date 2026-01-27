@@ -45,6 +45,7 @@ final class PeekPreviewTriggerView: ExpoView, UIContextMenuInteractionDelegate {
   override func unmountChildComponentView(_ child: UIView, index: Int) {
     if child is PeekPreviewContentView {
       if previewContent === child {
+        previewContent?.setPreviewActive(false)
         previewContent = nil
       }
       return
@@ -96,6 +97,10 @@ final class PeekPreviewTriggerView: ExpoView, UIContextMenuInteractionDelegate {
     guard let superview, let directChild else {
       return nil
     }
+    // UIKit will crash if the target view is not attached to a window.
+    guard directChild.window != nil, superview.window != nil else {
+      return nil
+    }
 
     // Anchor the highlight animation to the direct child for a more natural effect.
     let target = UIPreviewTarget(
@@ -115,9 +120,20 @@ final class PeekPreviewTriggerView: ExpoView, UIContextMenuInteractionDelegate {
     animator: UIContextMenuInteractionAnimating?
   ) {
     // The dismiss callback should run after the interaction animation completes.
-    animator?.addCompletion { [weak self] in
+    // However, `animator` can be nil, so we must handle both paths.
+    let completeDismiss: () -> Void = { [weak self] in
+      self?.previewContent?.setPreviewActive(false)
       self?.onDismiss(self?.makeEventPayload() ?? [:])
     }
+
+    if let animator {
+      animator.addCompletion {
+        completeDismiss()
+      }
+      return
+    }
+
+    completeDismiss()
   }
 
   func contextMenuInteraction(
@@ -134,11 +150,18 @@ final class PeekPreviewTriggerView: ExpoView, UIContextMenuInteractionDelegate {
       return nil
     }
 
+    previewContent.setPreviewActive(true)
+
     let viewController = PeekPreviewViewController(contentView: previewContent)
-    let size = previewContent.resolvePreferredContentSize()
+    var size = previewContent.resolvePreferredContentSize()
+    if size.width <= 0, let directChild {
+      size.width = directChild.bounds.width
+    }
     // Apply an explicit preferredContentSize when available.
     if size.width > 0, size.height > 0 {
       viewController.preferredContentSize = size
+    } else if size.height > 0 {
+      viewController.preferredContentSize = CGSize(width: 0, height: size.height)
     }
     return viewController
   }
@@ -154,6 +177,21 @@ final class PeekPreviewTriggerView: ExpoView, UIContextMenuInteractionDelegate {
 /// Hidden content view that is rendered by React, but presented inside the preview controller.
 final class PeekPreviewContentView: ExpoView {
   var preferredContentSizeOverride: CGSize?
+  private var isPreviewActive = false
+
+  func setPreviewActive(_ isActive: Bool) {
+    isPreviewActive = isActive
+    // When not previewing, this view should never intercept touches
+    // even though it is mounted in the normal view hierarchy.
+    isUserInteractionEnabled = isActive
+  }
+
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    guard isPreviewActive else {
+      return nil
+    }
+    return super.hitTest(point, with: event)
+  }
 
   func resolvePreferredContentSize() -> CGSize {
     // Preferred size precedence:
@@ -180,6 +218,7 @@ final class PeekPreviewViewController: UIViewController {
   init(contentView: PeekPreviewContentView) {
     self.contentView = contentView
     super.init(nibName: nil, bundle: nil)
+    self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
   }
 
   override func loadView() {
@@ -192,6 +231,11 @@ final class PeekPreviewViewController: UIViewController {
     contentView.frame = view.bounds
     contentView.setNeedsLayout()
     contentView.layoutIfNeeded()
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    contentView.setPreviewActive(false)
   }
 
   @available(*, unavailable)

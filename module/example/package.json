@@ -9,10 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/native": "*",
+    "@react-navigation/native-stack": "*",
     "expo": "~54.0.32",
     "peekie": "..",
     "react": "19.1.0",
     "react-native": "0.81.5",
+    "react-native-gesture-handler": "*",
+    "react-native-safe-area-context": "*",
     "react-native-screens": "*"
   },
   "devDependencies": {
