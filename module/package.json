@@ -19,6 +19,13 @@
   "keywords": [
     "react-native",
     "expo",
+    "react-navigation",
+    "ios",
+    "peek",
+    "peek-and-pop",
+    "context-menu",
+    "ui-context-menu",
+    "expo-module",
     "peekie",
     "PeekPreviewModule"
   ],
