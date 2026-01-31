@@ -1,5 +1,5 @@
 <h1>
-  <img src="image.png" alt="peekie logo" width="150" height="150" /> peekie
+  <img src="image.png" alt="peekie logo" width="150" height="150" /> react-native-peekie
 </h1>
 
 iOS Peek & Pop (via `UIContextMenuInteraction`) for React Native and Expo Modules.
@@ -30,7 +30,7 @@ The goal here is to offer the same UX in a router‑agnostic, reusable Expo modu
 ## Installation
 
 ```bash
-npm install peekie
+npm install react-native-peekie
 ```
 
 This module depends on `react-native-screens`:
@@ -44,7 +44,7 @@ npx expo install react-native-screens
 ```tsx
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import { PeekPreview } from 'peekie';
+import { PeekPreview } from 'react-native-peekie';
 
 export function Item() {
   return (
@@ -72,7 +72,7 @@ export function Item() {
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { PeekPreview } from 'peekie';
+import { PeekPreview } from 'react-native-peekie';
 
 export function Row({ id, title }: { id: string; title: string }) {
   const navigation = useNavigation();

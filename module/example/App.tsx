@@ -19,7 +19,7 @@ import {
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
 
-import { PeekPreview } from 'peekie';
+import { PeekPreview } from 'react-native-peekie';
 
 enableScreens(true);
 
@@ -58,7 +58,7 @@ function HomeScreen() {
   return (
     <SafeAreaView style={styles.screen} edges={['top']}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>peekie</Text>
+        <Text style={styles.headerTitle}>react-native-peekie</Text>
         <Text style={styles.headerSubtitle}>Peek, scroll, then commit</Text>
       </View>
 

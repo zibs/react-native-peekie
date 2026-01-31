@@ -1,7 +1,7 @@
 {
-  "name": "peekie",
+  "name": "react-native-peekie",
   "version": "1.0.0",
-  "description": "React Navigation iOS Peek Preview",
+  "description": "React Native iOS Peek Preview",
   "main": "build/index.js",
   "react-native": "src/index.ts",
   "types": "build/index.d.ts",
@@ -26,20 +26,21 @@
     "context-menu",
     "ui-context-menu",
     "expo-module",
+    "react-native-peekie",
     "peekie",
     "PeekPreviewModule"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zibs/peekie",
+    "url": "https://github.com/zibs/react-native-peekie",
     "directory": "module"
   },
   "bugs": {
-    "url": "https://github.com/zibs/peekie/issues"
+    "url": "https://github.com/zibs/react-native-peekie/issues"
   },
   "author": "Eli Zibin <elizibin@gmail.com> (https://github.com/zibs)",
   "license": "MIT",
-  "homepage": "https://github.com/zibs/peekie#readme",
+  "homepage": "https://github.com/zibs/react-native-peekie#readme",
   "files": [
     "android",
     "build",
