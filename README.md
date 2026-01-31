@@ -6,6 +6,8 @@ iOS Peek & Pop (via `UIContextMenuInteraction`) for React Native and Expo Module
 
 > iOS-only. Requires a development build (custom native code).
 
+<video src="example.MP4" controls playsinline muted loop width="360"></video>
+
 License: MIT
 
 ## Features
