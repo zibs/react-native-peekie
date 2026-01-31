@@ -12,20 +12,6 @@ import {
   NativePeekPreviewTrigger,
   areNativePeekPreviewsAvailable,
 } from './PeekPreviewModuleView';
-import { getPeekPreviewRenderer, subscribePeekPreviewRegistry } from './registry';
-
-/**
- * Legacy registry fallback.
- * When a `previewKey` is provided, this allows existing `registerPeekPreview`
- * usage to continue working while the compositional API is adopted.
- */
-function useRegisteredPreview(previewKey?: string) {
-  return React.useSyncExternalStore(
-    (listener) => (previewKey ? subscribePeekPreviewRegistry(previewKey, listener) : () => {}),
-    () => (previewKey ? getPeekPreviewRenderer(previewKey) : undefined),
-    () => (previewKey ? getPeekPreviewRenderer(previewKey) : undefined)
-  );
-}
 
 /** Slot component that marks the trigger subtree. */
 function TriggerSlot(props: PeekPreviewTriggerSlotProps) {
@@ -93,7 +79,6 @@ function PeekPreviewRoot(props: PeekPreviewProps) {
   } = props;
 
   const { triggerChildren, triggerSlot, previewSlot } = pickSlots(children);
-  const registeredPreview = useRegisteredPreview(previewKey);
 
   const slotStyle = triggerSlot?.props.style;
   const mergedStyle = slotStyle && style ? [slotStyle, style] : style ?? slotStyle;
@@ -104,7 +89,7 @@ function PeekPreviewRoot(props: PeekPreviewProps) {
     style: mergedStyle,
   };
 
-  const previewContent = previewSlot?.props.children ?? registeredPreview?.();
+  const previewContent = previewSlot?.props.children;
   const resolvedPreferredContentSize = previewSlot?.props.preferredContentSize ?? preferredContentSize;
 
   const handleWillShow = React.useCallback(

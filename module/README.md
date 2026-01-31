@@ -11,7 +11,6 @@ License: MIT
 - Compositional API: `PeekPreview.Trigger` + `PeekPreview.Preview`
 - Works with React Navigation or any router
 - No global registry required (good for large lists)
-- Legacy registry API is still available for backwards compatibility
 
 ## Attribution
 
@@ -110,14 +109,6 @@ Slot component for the press target. Accepts standard `ViewProps` (e.g., `style`
 ### `PeekPreview.Preview`
 
 Slot component for preview content. Accepts an optional `preferredContentSize`.
-
-### Legacy API
-
-If you already use the registry-based API, it still works:
-
-```tsx
-import { PeekPreviewTrigger, registerPeekPreview } from 'peekie';
-```
 
 ## Development
 

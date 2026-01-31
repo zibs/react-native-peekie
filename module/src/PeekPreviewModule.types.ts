@@ -36,25 +36,12 @@ export interface NativePeekPreviewContentProps extends ViewProps {
   children?: ReactNode;
 }
 
-/** Legacy registry renderer type. Prefer the compositional API. */
-export type PeekPreviewRenderer = () => ReactNode;
-
-/** Legacy trigger props kept for backward compatibility. */
-export interface PeekPreviewTriggerProps extends ViewProps {
-  previewKey: string;
-  onCommit: () => void;
-  onWillShow?: () => void;
-  onDismiss?: () => void;
-  preferredContentSize?: PreferredContentSize;
-  children: ReactNode;
-}
-
 /**
  * Compositional peek and pop container.
  *
  * Render `PeekPreview.Trigger` as the press target and `PeekPreview.Preview`
  * as the preview content. `previewKey` is optional but recommended so
- * callbacks can be correlated and the legacy registry fallback can work.
+ * callbacks can be correlated across events.
  */
 export interface PeekPreviewProps extends ViewProps {
   previewKey?: string;
