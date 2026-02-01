@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="peekie-dark.png" />
-    <img src="peekie.png" alt="react-native-peekie" width="900" />
+    <source media="(prefers-color-scheme: dark)" srcset="peekie-social-dark.png" />
+    <img src="peekie-social.png" alt="react-native-peekie" width="900" />
   </picture>
 </p>
 
