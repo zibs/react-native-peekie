@@ -1,6 +1,15 @@
-# react-native-peekie
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="peekie-dark.png" />
+    <img src="peakie.png" alt="react-native-peekie" width="900" />
+  </picture>
+</p>
 
-[![npm version](https://img.shields.io/npm/v/react-native-peekie.svg)](https://www.npmjs.com/package/react-native-peekie)
+<h1 align="center">react-native-peekie</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-native-peekie"><img src="https://img.shields.io/npm/v/react-native-peekie.svg" alt="npm version" /></a>
+</p>
 
 iOS Peek & Pop (via `UIContextMenuInteraction`) for React Native and Expo Modules.
 
