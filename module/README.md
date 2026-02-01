@@ -1,5 +1,7 @@
 # react-native-peekie
 
+[![npm version](https://img.shields.io/npm/v/react-native-peekie.svg)](https://www.npmjs.com/package/react-native-peekie)
+
 iOS Peek & Pop (via `UIContextMenuInteraction`) for React Native and Expo Modules.
 
 > iOS-only. Requires a development build (custom native code).

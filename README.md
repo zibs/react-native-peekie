@@ -2,6 +2,8 @@
   <img src="image.png" alt="peekie logo" width="150" height="150" /> react-native-peekie
 </h1>
 
+[![npm version](https://img.shields.io/npm/v/react-native-peekie.svg)](https://www.npmjs.com/package/react-native-peekie)
+
 iOS Peek & Pop (via `UIContextMenuInteraction`) for React Native and Expo Modules.
 
 > iOS-only. Requires a development build (custom native code).
