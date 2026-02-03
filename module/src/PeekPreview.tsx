@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { View } from 'react-native';
+import * as React from "react";
+import { View } from "react-native";
 
 import type {
   PeekPreviewEvent,
   PeekPreviewPreviewSlotProps,
   PeekPreviewProps,
   PeekPreviewTriggerSlotProps,
-} from './PeekPreviewModule.types';
+} from "./PeekPreviewModule.types";
 import {
   NativePeekPreviewContent,
   NativePeekPreviewTrigger,
   areNativePeekPreviewsAvailable,
-} from './PeekPreviewModuleView';
+} from "./PeekPreviewModuleView";
 
 /** Slot component that marks the trigger subtree. */
 function TriggerSlot(props: PeekPreviewTriggerSlotProps) {
@@ -81,7 +81,8 @@ function PeekPreviewRoot(props: PeekPreviewProps) {
   const { triggerChildren, triggerSlot, previewSlot } = pickSlots(children);
 
   const slotStyle = triggerSlot?.props.style;
-  const mergedStyle = slotStyle && style ? [slotStyle, style] : style ?? slotStyle;
+  const mergedStyle =
+    slotStyle && style ? [slotStyle, style] : (style ?? slotStyle);
 
   const viewProps = {
     ...(triggerSlot?.props ?? {}),
@@ -90,30 +91,33 @@ function PeekPreviewRoot(props: PeekPreviewProps) {
   };
 
   const previewContent = previewSlot?.props.children;
-  const resolvedPreferredContentSize = previewSlot?.props.preferredContentSize ?? preferredContentSize;
+  const resolvedPreferredContentSize =
+    previewSlot?.props.preferredContentSize ?? preferredContentSize;
 
   const handleWillShow = React.useCallback(
     (_event: PeekPreviewEvent) => {
       onWillShow?.();
     },
-    [onWillShow]
+    [onWillShow],
   );
 
   const handleCommit = React.useCallback(
     (_event: PeekPreviewEvent) => {
       onCommit();
     },
-    [onCommit]
+    [onCommit],
   );
 
   const handleDismiss = React.useCallback(
     (_event: PeekPreviewEvent) => {
       onDismiss?.();
     },
-    [onDismiss]
+    [onDismiss],
   );
 
-  const resolvedTriggerChildren = triggerSlot ? triggerSlot.props.children : triggerChildren;
+  const resolvedTriggerChildren = triggerSlot
+    ? triggerSlot.props.children
+    : triggerChildren;
 
   if (!areNativePeekPreviewsAvailable) {
     return <View {...viewProps}>{resolvedTriggerChildren}</View>;
@@ -129,7 +133,9 @@ function PeekPreviewRoot(props: PeekPreviewProps) {
     >
       {resolvedTriggerChildren}
       {previewContent ? (
-        <NativePeekPreviewContent preferredContentSize={resolvedPreferredContentSize}>
+        <NativePeekPreviewContent
+          preferredContentSize={resolvedPreferredContentSize}
+        >
           {previewContent}
         </NativePeekPreviewContent>
       ) : null}
