@@ -1,3 +1,3 @@
-export { default } from './PeekPreviewModule';
-export { PeekPreview } from './PeekPreview';
-export * from './PeekPreviewModule.types';
+export { default } from "./PeekPreviewModule";
+export { PeekPreview } from "./PeekPreview";
+export * from "./PeekPreviewModule.types";

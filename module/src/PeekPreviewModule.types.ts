@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import type { ViewProps } from 'react-native';
+import type { ReactNode } from "react";
+import type { ViewProps } from "react-native";
 
 /**
  * Optional size override for the native preview controller.

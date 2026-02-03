@@ -1,5 +1,5 @@
-import { NativeModule, registerWebModule } from 'expo';
+import { NativeModule, registerWebModule } from "expo";
 
 class PeekPreviewModule extends NativeModule {}
 
-export default registerWebModule(PeekPreviewModule, 'PeekPreviewModule');
+export default registerWebModule(PeekPreviewModule, "PeekPreviewModule");
